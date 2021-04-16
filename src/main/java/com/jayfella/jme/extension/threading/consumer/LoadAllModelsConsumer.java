@@ -1,0 +1,25 @@
+package com.jayfella.jme.extension.threading.consumer;
+
+import com.jayfella.jme.extension.threading.callback.AsyncCallback;
+import com.jme3.app.Application;
+import com.jme3.scene.Spatial;
+
+import java.util.function.Consumer;
+
+public class LoadAllModelsConsumer implements Consumer<Spatial[]> {
+
+    private final Application app;
+    private final AsyncCallback<Spatial[]> callback;
+
+    public LoadAllModelsConsumer(Application app, AsyncCallback<Spatial[]> callback) {
+        this.app = app;
+        this.callback = callback;
+    }
+
+    @Override
+    public void accept(Spatial[] spatials) {
+        app.enqueue(() -> callback.complete(spatials));
+
+    }
+
+}

@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'com.jayfella'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+project.ext {
+    jme_ver = "3.3.2-stable"
+}
+
+dependencies {
+    implementation "org.jmonkeyengine:jme3-core:$jme_ver"
+    implementation "org.jmonkeyengine:jme3-desktop:$jme_ver"
+    implementation "org.jmonkeyengine:jme3-lwjgl:$jme_ver"
+
+    implementation "org.jmonkeyengine:jme3-plugins:$jme_ver"
+}
+
