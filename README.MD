@@ -74,11 +74,11 @@ case of multiples you can opt to get the result as they are loaded or all at onc
 
 - Load multiple assets and return them as they are loaded.
     - loadAllModels(IndexedAsyncCallback<Spatial> callback, String... names)
-    - loadAllTextures(IndexedAsyncCallback<Spatial> callback, String... names)
+    - loadAllTextures(IndexedAsyncCallback<Texture> callback, String... names)
     
 - Load multiple assets and return the complete set.
     - loadAllModels(AsyncCallback<Spatial[]> callback, String... names)
-    - loadAllTextures(AsyncCallback<Spatial[]> callback, String... names)
+    - loadAllTextures(AsyncCallback<Texture[]> callback, String... names)
 ```
 
 ### Next-Frame Execution

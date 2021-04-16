@@ -1,9 +1,20 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 group 'com.jayfella'
 version '1.0.0'
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    archiveClassifier.set("sources")
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    archiveClassifier.set("javadoc")
+}
 
 repositories {
     mavenCentral()
