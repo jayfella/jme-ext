@@ -81,6 +81,8 @@ case of multiples you can opt to get the result as they are loaded or all at onc
     - loadAllTextures(AsyncCallback<Texture[]> callback, String... names)
 ```
 
+In addition, there are variants of these methods that accept an Executor.
+
 ### Next-Frame Execution
 
 ---
