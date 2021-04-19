@@ -94,8 +94,10 @@ public abstract class SingletonJmeApplication extends SimpleApplication {
      * executes the given Runnable in the next frame.
      * @param runnable the Runnable to execute.
      */
-    public void enqueueNextFrame(Runnable runnable) {
-        runnableDeque.add(runnable);
+    public boolean enqueueNextFrame(Runnable runnable) {
+        synchronized (runnableDeque) {
+            return runnableDeque.add(runnable);
+        }
     }
 
     public AsyncAssetManager getAsyncAssetManager() {
