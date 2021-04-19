@@ -1,19 +1,29 @@
 plugins {
     id 'java'
-    id 'maven-publish'
+    id 'maven'
+    id 'signing'
 }
 
-group 'com.jayfella'
+group 'io.github.jayfella'
+archivesBaseName = "jme-ext"
 version '1.0.0'
 
 task sourcesJar(type: Jar) {
-    from sourceSets.main.allJava
+    from sourceSets.main.allSource
     archiveClassifier.set("sources")
 }
 
 task javadocJar(type: Jar) {
     from javadoc
     archiveClassifier.set("javadoc")
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
 }
 
 repositories {
@@ -32,3 +42,47 @@ dependencies {
     implementation "org.jmonkeyengine:jme3-plugins:$jme_ver"
 }
 
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://s01.oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'jme-ext'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'An extension of the JME Application'
+                // url 'http://www.example.com/example-application'
+
+                scm {
+                    connection 'scm:svn:http://foo.googlecode.com/svn/trunk/'
+                    developerConnection 'scm:svn:https://foo.googlecode.com/svn/trunk/'
+                    url 'http://foo.googlecode.com/svn/trunk/'
+                }
+
+                licenses {
+                    license {
+                        name 'The 3-Clause BSD License'
+                        url 'https://opensource.org/licenses/BSD-3-Clause'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'jayfella'
+                        name 'James Khan'
+                        // email 'jayfella@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+}
