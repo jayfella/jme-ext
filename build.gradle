@@ -60,12 +60,12 @@ uploadArchives {
                 packaging 'jar'
                 // optionally artifactId can be defined here
                 description 'An extension of the JME Application'
-                // url 'http://www.example.com/example-application'
+                url 'https://github.com/jayfella/jme-ext'
 
                 scm {
-                    connection 'scm:svn:http://foo.googlecode.com/svn/trunk/'
-                    developerConnection 'scm:svn:https://foo.googlecode.com/svn/trunk/'
-                    url 'http://foo.googlecode.com/svn/trunk/'
+                    connection 'https://github.com/jayfella/jme-ext'
+                    developerConnection 'https://github.com/jayfella/jme-ext.git'
+                    url 'https://github.com/jayfella/jme-ext'
                 }
 
                 licenses {
